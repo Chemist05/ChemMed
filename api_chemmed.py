@@ -15,6 +15,9 @@ def prop1():
 
     mol = Chem.MolFromSmiles(smiles)
 
+    if not mol:
+        return jsonify({"error" : "SMILES is missing or is wrong!"}), 400
+
     molw = Descriptors.MolWt(mol)
     logp = Descriptors.MolLogP(mol)
     rotb = Descriptors.NumRotatableBonds(mol)
@@ -39,6 +42,9 @@ def prop2():
     smiles = data.get("smiles")
 
     mol = Chem.MolFromSmiles(smiles)
+
+    if not mol:
+        return jsonify({"error" : "SMILES is missing or is wrong!"}), 400
 
     bal_index = GraphDescriptors.BalabanJ(mol)
     ran_index = GraphDescriptors.Chi0(mol)
