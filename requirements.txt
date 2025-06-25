@@ -1,0 +1,4 @@
+rdkit
+math
+flask
+gunicorn
