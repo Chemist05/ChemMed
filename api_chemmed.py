@@ -8,7 +8,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 @app.route("/prop1")
-def prop1():
+def prop1(methods=["POST"]):
 
     data = request.get_json()
     smiles = data.get("smiles")
@@ -36,7 +36,7 @@ def prop1():
     })
 
 @app.route("/prop2")
-def prop2():
+def prop2(methods=["POST"]):
 
     data = request.get_json()
     smiles = data.get("smiles")
