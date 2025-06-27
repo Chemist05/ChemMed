@@ -16,7 +16,10 @@ def prop1(methods=["POST"]):
     mol = Chem.MolFromSmiles(smiles)
 
     if not mol:
-        return jsonify({"error" : "SMILES is missing or is wrong!"}), 400
+        return jsonify({
+            "status" : "fail",
+            "error" : "SMILES is missing or is wrong!"
+            }), 400
 
     molw = Descriptors.MolWt(mol)
     logp = Descriptors.MolLogP(mol)
@@ -26,6 +29,7 @@ def prop1(methods=["POST"]):
     numhacp = Descriptors.NumHAcceptors(mol)
 
     return jsonify({
+        "status" : "success",
         "smiles" : smiles,
         "molw" : molw,
         "logp" : logp,
